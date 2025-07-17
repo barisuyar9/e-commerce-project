@@ -80,7 +80,7 @@ const Header = () => {
 
         {/* Iconlar + Hamburger */}
         <div className="flex items-center gap-4 md:gap-6">
-          <Link to="/login" className="flex items-center text-blue-600 text-sm hover:text-blue-800 font-bold hidden md:flex">
+          <Link to="/login" className="hidden md:flex items-center text-blue-600 text-sm hover:text-blue-800 font-bold">
             <User className="w-5 h-5 mr-1" /> Login / Register
           </Link>
           <Search className="w-5 h-5 text-gray-700" />
