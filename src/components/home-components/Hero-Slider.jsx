@@ -19,7 +19,7 @@ export default function HeroSlider() {
         }}
       >
         <SwiperSlide>
-          <div className=" w-full h-full bg-[url(images1.jpg)] bg-cover bg-[position:50%_center] text-white font-[Montserrat] flex flex-col items-center justify-center p-20 text-center gap-10 md:bg-center md:text-left md:items-start">
+          <div className=" w-full h-full bg-[url('/images1.jpg')] bg-cover bg-[position:50%_center] text-white font-[Montserrat] flex flex-col items-center justify-center p-20 text-center gap-10 md:bg-center md:text-left md:items-start">
             <h5 className="font-bold">SUMMER 2025</h5>
             <h2 className="font-bold text-[40px] md:text-[58px]">
               NEW COLLECTION
@@ -39,7 +39,7 @@ export default function HeroSlider() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className=" w-full h-full bg-[url(images1.jpg)] bg-cover bg-[position:50%_center] text-white font-[Montserrat] flex flex-col items-center justify-center p-20 text-center gap-10 md:bg-center md:text-left md:items-start">
+          <div className=" w-full h-full bg-[url('/images1.jpg')] bg-cover bg-[position:50%_center] text-white font-[Montserrat] flex flex-col items-center justify-center p-20 text-center gap-10 md:bg-center md:text-left md:items-start">
             <h5 className="font-bold">SUMMER 2025</h5>
             <h2 className="font-bold text-[40px] md:text-[58px]">
               NEW COLLECTION
