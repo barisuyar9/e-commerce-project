@@ -1,0 +1,51 @@
+// CLIENT
+export const CLIENT_SET_USER = "CLIENT/SET_USER";
+export const CLIENT_SET_ROLES = "CLIENT/SET_ROLES";
+export const CLIENT_SET_THEME = "CLIENT/SET_THEME";
+export const CLIENT_SET_LANGUAGE = "CLIENT/SET_LANGUAGE";
+
+// PRODUCT
+export const PRODUCT_SET_CATEGORIES = "PRODUCT/SET_CATEGORIES";
+export const PRODUCT_SET_LIST = "PRODUCT/SET_LIST";
+export const PRODUCT_SET_TOTAL = "PRODUCT/SET_TOTAL";
+export const PRODUCT_SET_FETCH_STATE = "PRODUCT/SET_FETCH_STATE";
+export const PRODUCT_SET_LIMIT = "PRODUCT/SET_LIMIT";
+export const PRODUCT_SET_OFFSET = "PRODUCT/SET_OFFSET";
+export const PRODUCT_SET_FILTER = "PRODUCT/SET_FILTER";
+export const PRODUCT_SET_DETAIL = "PRODUCT_SET_DETAIL";
+export const PRODUCT_SET_DETAIL_FETCH_STATE = "PRODUCT_SET_DETAIL_FETCH_STATE";
+
+// SHOPPING CART
+export const CART_ADD_ITEM = "cart/CART_ADD_ITEM";
+export const CART_REMOVE_ITEM = "cart/CART_REMOVE_ITEM";
+export const CART_DECREASE_ITEM = "cart/CART_DECREASE_ITEM";
+export const CART_TOGGLE_CHECKED = "cart/CART_TOGGLE_CHECKED";
+export const CART_CLEAR = "cart/CART_CLEAR";
+
+//FAV PRODUCT
+export const FAV_ADD = "fav/FAV_ADD";
+export const FAV_REMOVE = "fav/FAV_REMOVE";
+export const FAV_TOGGLE = "fav/FAV_TOGGLE";
+export const FAV_CLEAR = "fav/FAV_CLEAR";
+
+//ADDRESS
+export const ADDRESS_SET_LIST = "address/ADDRESS_SET_LIST";
+export const ADDRESS_SET_FETCH_STATE = "address/ADDRESS_SET_FETCH_STATE";
+export const ADDRESS_SELECT_SHIPPING = "address/ADDRESS_SELECT_SHIPPING";
+export const ADDRESS_SELECT_BILLING = "address/ADDRESS_SELECT_BILLING";
+
+//CARD
+export const CARD_SET_LIST = "card/CARD_SET_LIST";
+export const CARD_SET_FETCH_STATE = "card/CARD_SET_FETCH_STATE";
+export const CARD_SELECT = "card/CARD_SELECT";
+
+// ORDER
+export const ORDER_SET_ADDRESSES = "order/ORDER_SET_ADDRESSES";
+export const ORDER_SET_ITEMS     = "order/ORDER_SET_ITEMS";
+export const ORDER_SET_SUMMARY   = "order/ORDER_SET_SUMMARY";
+export const ORDER_CLEAR         = "order/ORDER_CLEAR";
+
+// ORDER HISTORY
+export const ORDERHIST_SET_LIST = "orderhist/SET_LIST";
+export const ORDERHIST_SET_FETCH_STATE = "orderhist/SET_FETCH_STATE";
+export const ORDERHIST_SET_ERROR = "orderhist/SET_ERROR";
