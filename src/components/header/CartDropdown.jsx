@@ -15,7 +15,7 @@ export default function CartDropdown({ onClose }) {
   );
 
   return (
-    <div className="font-[Montserrat] absolute -right-10 top-12 mt-2 w-80 bg-white shadow-lg border border-[#E6E6E6] rounded p-3 z-50">
+    <div className="font-[Montserrat] absolute -right-45 md:-right-10 top-12 mt-2 w-80 bg-white shadow-lg border border-[#E6E6E6] rounded p-3 z-50">
       <div className="font-bold mb-2">
         My Cart ({items.reduce((s, x) => s + x.count, 0)})
       </div>
@@ -55,7 +55,6 @@ export default function CartDropdown({ onClose }) {
                 >
                   +
                 </button>
-                
               </div>
             </div>
           ))
@@ -73,7 +72,7 @@ export default function CartDropdown({ onClose }) {
             Go to Cart
           </Link>
           <Link
-            to="/maintenance"
+            to="/checkout"
             className="bg-[#23A6F0] text-white px-3 py-1 rounded font-bold"
             onClick={onClose}
           >

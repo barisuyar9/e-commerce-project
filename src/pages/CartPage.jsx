@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   addToCart,
   decreaseFromCart,
@@ -11,6 +12,7 @@ const FREE_SHIPPING_LIMIT = 150;
 
 export default function CartPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const items = useSelector((s) => s.cart?.items || []);
 
   const totalItems = items.reduce((s, x) => s + x.count, 0);
@@ -116,7 +118,7 @@ export default function CartPage() {
                 {/* actions */}
                 <div className="col-span-3 md:col-span-2 text-right">
                   <button
-                    className="px-3 py-1 border border-[#E6E6E6] rounded hover:bg-gray-50 cursor-pointer"
+                    className="px-2 py-1 border border-[#E6E6E6] rounded hover:bg-gray-50 cursor-pointer"
                     onClick={() => dispatch(removeFromCart(it.product.id))}
                   >
                     Remove
@@ -158,12 +160,10 @@ export default function CartPage() {
               <span className="font-bold">${grandTotal.toFixed(2)}</span>
             </div>
 
-           
-
             <button
               className="mt-4 w-full bg-[#23A6F0] text-white font-bold py-2 rounded hover:bg-[#2497da] disabled:bg-gray-300 cursor-pointer disabled:cursor-not-allowed"
               disabled={selected.length === 0}
-              // onClick={() => {} }  // no functionality yet
+              onClick={() => history.push("/checkout")}
             >
               Create Order
             </button>

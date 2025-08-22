@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import { fetchAddresses } from "../store/thunks/addressThunk";
 import { selectShipping, selectBilling } from "../store/actions/addressActions";
 
+import {
+  setOrderAddresses,
+  setOrderItems,
+  setOrderSummary,
+} from "../store/actions/orderActions";
 
 const BASE_SHIPPING = 29.99;
 const FREE_SHIPPING_LIMIT = 150;
 
 export default function CheckoutAddressPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { items, fetchState, shippingId, billingId } = useSelector(
     (s) => s.address
   );
-
 
   const cartItems = useSelector((s) => s.cart?.items || []);
   const selected = cartItems.filter((x) => x.checked);
@@ -27,7 +33,6 @@ export default function CheckoutAddressPage() {
   const shippingPay = Math.max(0, shippingBase - shippingDiscount);
   const grandTotal = subtotal + shippingPay;
 
-
   const [sameAsShipping, setSameAsShipping] = useState(true);
 
   useEffect(() => {
@@ -35,7 +40,6 @@ export default function CheckoutAddressPage() {
       dispatch(fetchAddresses());
     }
   }, [dispatch, fetchState]);
-
 
   useEffect(() => {
     if (sameAsShipping && shippingId) {
@@ -73,22 +77,43 @@ export default function CheckoutAddressPage() {
 
   const loading = fetchState === "FETCHING";
 
+
+  const handleSaveAndContinue = () => {
+   
+    dispatch(
+      setOrderAddresses({
+        shippingId,
+        billingId: sameAsShipping ? shippingId : billingId,
+      })
+    );
+  
+    dispatch(setOrderItems(selected));
+    
+    dispatch(
+      setOrderSummary({
+        subtotal,
+        shipping: shippingPay, 
+        discount: shippingDiscount,
+        total: grandTotal,
+      })
+    );
+    history.push("/checkout/payment");
+  };
+
   return (
     <main className="w-[90vw] max-w-[1200px] mx-auto py-10 font-[Montserrat] text-[#252B42]">
       <h1 className="text-3xl font-bold mb-6">Create Order — Address</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
+        {/* LEFT */}
         <section className="md:col-span-2 space-y-6">
-        
+          {/* Shipping */}
           <div className="bg-white border border-[#E6E6E6] rounded-xl p-4">
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-lg font-bold">Shipping Address</h2>
               <button
                 className="text-[#23A6F0] font-bold cursor-pointer"
-                // onClick={... new addressform}
-                disabled
-                title="Add new address (next step)"
+                onClick={() => history.push("/checkout/address/new")}
               >
                 + Add Address
               </button>
@@ -120,7 +145,7 @@ export default function CheckoutAddressPage() {
             )}
           </div>
 
-        
+          {/* Billing */}
           <div className="bg-white border border-[#E6E6E6] rounded-xl p-4">
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-lg font-bold">Billing Address</h2>
@@ -162,23 +187,22 @@ export default function CheckoutAddressPage() {
             )}
           </div>
 
-        
+          {/* Next */}
           <div className="flex justify-end">
             <button
               className="bg-[#23A6F0] text-white font-bold py-2 px-4 rounded hover:bg-[#2497da] cursor-pointer disabled:bg-gray-300 disabled:cursor-not-allowed"
               disabled={!shippingId || (!sameAsShipping && !billingId)}
-              // onClick={() => history.push("/checkout/payment")} 
+              onClick={handleSaveAndContinue}
             >
               Save & Continue
             </button>
           </div>
         </section>
 
-        
+        {/* RIGHT: summary */}
         <aside className="md:col-span-1">
           <div className="bg-white border border-[#E6E6E6] rounded-xl p-4 shadow-sm md:sticky md:top-24">
             <h3 className="text-lg font-bold mb-3">Order Summary</h3>
-
             <Row label="Products total" value={`$${subtotal.toFixed(2)}`} />
             <Row label="Shipping" value={`$${shippingBase.toFixed(2)}`} />
             <Row

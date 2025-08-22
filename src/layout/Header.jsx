@@ -71,7 +71,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [favOpen, setFavOpen] = useState(false);
-
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false); 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -109,7 +109,17 @@ export default function Header() {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    setIsUserMenuOpen(false);
     history.push("/");
+  };
+
+
+  const handleProfileIconClick = () => {
+    if (isAuthed) {
+      history.push("/profile");
+    } else {
+      history.push("/login");
+    }
   };
 
   const cartCount = useSelector((s) =>
@@ -266,46 +276,73 @@ export default function Header() {
             Pricing
           </Link>
         </div>
+
         <div className="flex gap-5 md:gap-7 text-[#252B42] md:text-[#23A6F0]">
           <div className="flex gap-2 items-center">
             {isAuthed ? (
               <>
-                <Link
-                  //to="/profile"
-                  to="/maintenance"
-                  className="flex gap-2 content-center items-center "
-                  title={emailToShow}
-                >
-                  {/* Gravatar */}
-                  <Gravatar
-                    email={emailForAvatar}
-                    size={28}
-                    default="identicon"
-                    className="rounded-full"
-                  />
+               
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setIsUserMenuOpen((p) => !p)}
+                    className="flex gap-2 items-center cursor-pointer"
+                    title={emailToShow}
+                  >
+                   
+                    <Gravatar
+                      email={emailForAvatar}
+                      size={28}
+                      default="identicon"
+                      className="rounded-full"
+                    />
+                    <span className="hidden md:flex text-[#23A6F0] font-bold">
+                      {emailToShow}
+                    </span>
+                    {isUserMenuOpen ? <ChevronUp /> : <ChevronDown />}
+                  </button>
 
-                  <span className="hidden md:flex text-[#23A6F0] font-bold">
-                    {emailToShow}
-                  </span>
-                </Link>
-
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  className="hidden md:flex text-[#23A6F0] font-bold hover:underline"
-                >
-                  Logout
-                </button>
+                  {isUserMenuOpen && (
+                    <div className="absolute md:right-0 mt-2 w-48 bg-white border border-[#E6E6E6] rounded-xl shadow-md py-2 z-50">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsUserMenuOpen(false);
+                          history.push("/profile");
+                        }}
+                        className="block w-full text-left px-4 py-2 hover:bg-gray-50 text-sm cursor-pointer"
+                      >
+                        Profile
+                      </button>
+                      <Link
+                        to="/orders"
+                        onClick={() => setIsUserMenuOpen(false)}
+                        className="block px-4 py-2 hover:bg-gray-50 text-sm cursor-pointer"
+                      >
+                        My Orders
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={handleLogout}
+                        className="block w-full text-left px-4 py-2 hover:bg-gray-50 text-sm text-red-600 cursor-pointer"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  )}
+                </div>
               </>
             ) : (
               <>
-                <Link
-                  //to="/profile"
-                  to="/maintenance"
-                  className="flex gap-1 content-center items-center "
+                
+                <button
+                  type="button"
+                  onClick={handleProfileIconClick}
+                  className="flex gap-1 content-center items-center cursor-pointer"
+                  title="Profile"
                 >
                   <CircleUserRound />
-                </Link>
+                </button>
 
                 <Link
                   to="/login"
@@ -326,8 +363,10 @@ export default function Header() {
             )}
           </div>
 
-          {/* search */}
+         
           <Search />
+
+          
           <div className="relative">
             <button
               onClick={() => setCartOpen((p) => !p)}
@@ -336,13 +375,15 @@ export default function Header() {
               title="Cart"
             >
               <ShoppingCart />
-
               <span className="hidden md:flex">{cartCount}</span>
             </button>
-
             {cartOpen && <CartDropdown onClose={() => setCartOpen(false)} />}
           </div>
-          <Menu onClick={toggleMenu} className="md:hidden" />
+
+         
+          <Menu onClick={toggleMenu} className="md:hidden cursor-pointer" />
+
+          
           <div className="relative hidden md:flex gap-1 content-center items-center">
             <button
               type="button"
@@ -357,6 +398,7 @@ export default function Header() {
           </div>
         </div>
       </div>
+
       {isOpen && (
         <div className="flex flex-col justify-between items-center gap-10 px-10 py-20 font-[Montserrat] text-3xl text-[#737373] md:hidden">
           <Link
