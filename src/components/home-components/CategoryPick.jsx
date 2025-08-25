@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const categories = [
   {
@@ -49,9 +50,9 @@ const CategoryPick = () => {
               className="object-cover w-full h-full"
             />
             <div className="absolute left-[31px] md:left-[31px] right-[calc(100%-201px)] md:right-[309px] bottom-[26px] w-[170px] h-12 bg-white flex items-center justify-center shadow-md">
-              <span className="font-bold text-[16px] leading-6 tracking-[0.1px] text-[#252B42]">
+              <Link to="/shop" className="font-bold text-[16px] leading-6 tracking-[0.1px] text-[#252B42] w-full h-full flex items-center justify-center">
                 {categories[0].title}
-              </span>
+              </Link>
             </div>
           </div>
           {/* WOMEN */}
@@ -62,9 +63,9 @@ const CategoryPick = () => {
               className="object-cover w-full h-full"
             />
             <div className="absolute left-[14px] md:left-[21px] right-[calc(100%-132px)] md:right-[83px] bottom-[23px] md:bottom-[18px] w-[170px] md:w-auto h-12 bg-white flex items-center justify-center shadow-md px-6 md:px-12">
-              <span className="font-bold text-[16px] leading-6 tracking-[0.1px] text-[#252B42]">
+              <Link to="/shop" className="font-bold text-[16px] leading-6 tracking-[0.1px] text-[#252B42] w-full h-full flex items-center justify-center">
                 {categories[1].title}
-              </span>
+              </Link>
             </div>
           </div>
           {/* ACCESSORIES & KIDS */}
@@ -77,9 +78,9 @@ const CategoryPick = () => {
                 className="object-cover w-full h-full"
               />
               <div className="absolute left-[14px] md:left-[14px] right-[calc(100%-132px)] md:right-[56px] bottom-[23px] w-[170px] md:w-auto h-12 bg-white flex items-center justify-center shadow-md px-4 md:px-6">
-                <span className="font-bold text-[16px] leading-6 tracking-[0.1px] text-[#252B42]">
+                <Link to="/shop" className="font-bold text-[16px] leading-6 tracking-[0.1px] text-[#252B42] w-full h-full flex items-center justify-center">
                   {categories[2].title}
-                </span>
+                </Link>
               </div>
             </div>
             {/* KIDS */}
@@ -90,9 +91,9 @@ const CategoryPick = () => {
                 className="object-cover w-full h-full"
               />
               <div className="absolute left-[18px] md:left-[18px] right-[calc(100%-138px)] md:right-[102px] bottom-[18px] w-[120px] md:w-auto h-12 bg-white flex items-center justify-center shadow-md px-4 md:px-10">
-                <span className="font-bold text-[16px] leading-6 tracking-[0.1px] text-[#252B42]">
+                <Link to="/shop" className="font-bold text-[16px] leading-6 tracking-[0.1px] text-[#252B42] w-full h-full flex items-center justify-center">
                   {categories[3].title}
-                </span>
+                </Link>
               </div>
             </div>
           </div>
